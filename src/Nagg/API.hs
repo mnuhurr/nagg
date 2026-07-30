@@ -53,6 +53,7 @@ getItems conn maybeBfr mLimit = liftIO $ do
         \FROM item \
         \JOIN source ON item.source_id = source.id \
         \JOIN category ON source.category_id = category.id \
+        \GROUP BY item.guid \
         \ORDER BY item.published_at DESC LIMIT ?"
         (Only limit)
     Just before ->
@@ -62,6 +63,7 @@ getItems conn maybeBfr mLimit = liftIO $ do
         \JOIN source ON item.source_id = source.id \
         \JOIN category ON source.category_id = category.id \
         \WHERE item.published_at < ? \
+        \GROUP BY item.guid \
         \ORDER BY item.published_at DESC LIMIT ?"
         (before, limit)
 
