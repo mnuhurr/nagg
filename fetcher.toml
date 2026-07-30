@@ -1,0 +1,68 @@
+[general]
+db_path = "news.sql"
+
+# hesari
+[[source]]
+url = "http://www.hs.fi/rss/suomi.xml"
+category = "kotimaa"
+
+[[source]]
+url = "http://www.hs.fi/rss/maailma.xml"
+category = "ulkomaat"
+
+[[source]]
+url = "http://www.hs.fi/rss/talous.xml"
+category = "talous"
+
+[[source]]
+url = "http://www.hs.fi/rss/politiikka.xml"
+category = "politiikka"
+
+[[source]]
+url = "http://www.hs.fi/rss/urheilu.xml"
+category = "urheilu"
+
+[[source]]
+url = "http://www.hs.fi/rss/kulttuuri.xml"
+category = "kulttuuri"
+
+# yle
+[[source]]
+url = "https://yle.fi/rss/t/18-34837/fi"
+category = "kotimaa"
+
+[[source]]
+url = "https://yle.fi/rss/t/18-34953/fi"
+category = "ulkomaat"
+
+[[source]]
+url = "https://yle.fi/rss/t/18-19274/fi"
+category = "talous"
+
+[[source]]
+url = "https://yle.fi/rss/t/18-38033/fi"
+category = "politiikka"
+
+[[source]]
+url = "https://yle.fi/rss/t/18-150067/fi"
+category = "kulttuuri"
+
+[[source]]
+url = "https://yle.fi/rss/t/18-819/fi"
+category = "tiede"
+
+[[source]]
+url = "https://yle.fi/rss/t/18-35354/fi"
+category = "luonto"
+
+[[source]]
+url = "https://yle.fi/rss/t/18-36066/fi"
+category = "viihde"
+
+[[source]]
+url = "https://yle.fi/rss/urheilu"
+category = "urheilu"
+
+[[source]]
+url = "https://yle.fi/rss/t/18-215844/fi"
+category = "kolumnit"
