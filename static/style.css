@@ -1,6 +1,6 @@
 :root {
     font-family: Inter, system-ui, sans-serif;
-    font-size: 8pt;
+    line-height: 1.3;
 
     --bg: #fff;
     --meta: #777;
