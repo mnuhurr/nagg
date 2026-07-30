@@ -62,7 +62,8 @@ function renderItem(item) {
   const meta = document.createElement('div');
   meta.className = 'meta';
   const date = new Date(item.itemPubDate);
-  meta.textContent = `${item.itemSourceName} · ${item.itemCategory} · ${date.toLocaleString()}`;
+  // meta.textContent = `${item.itemSourceName} · ${item.itemCategory} · ${date.toLocaleString()}`;
+  meta.textContent = `${item.itemCategory} · ${item.itemSourceName} · ${date.toLocaleString()}`;
 
   const dot = document.createElement('span');
   dot.style.display = 'inline-block';

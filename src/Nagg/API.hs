@@ -16,7 +16,7 @@ import Network.Wai.Handler.Warp (run)
 import Servant 
   ( type (:>), type (:<|>)(..), Get, JSON, QueryParam, Server, Handler, serve, Raw)
 import Servant.Server.StaticFiles (serveDirectoryFileServer)
-
+import qualified Data.Text as T
 
 data ItemView = ItemView
   { itemTitle :: !Text
@@ -68,4 +68,4 @@ getItems conn maybeBfr mLimit = liftIO $ do
         (before, limit)
 
 instance FromRow ItemView where
-  fromRow = ItemView <$> field <*> field <*> field <*> field <*> field <*> field
+  fromRow = ItemView <$> field <*> field <*> field <*> field <*> field <*> (T.toTitle <$> field)
