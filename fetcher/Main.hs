@@ -1,17 +1,14 @@
 module Main (main) where
 
 import Nagg
-import Nagg.DB (withDB, initDB)
 
 main :: IO ()
 main = do
   cfg <- readConfig "fetcher.toml"
   
   let db_path = (gcDbPath . cfgGeneral) cfg
-  withDB db_path $ \conn -> do
-    initDB conn
+  let sources = cfgSources cfg
 
-    _ <- mapM (collectSourceItems conn) $ cfgSources cfg
-    pure ()
+  _ <- mapM (collectSourceItems db_path) sources 
   
   pure ()

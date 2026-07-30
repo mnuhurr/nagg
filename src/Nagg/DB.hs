@@ -36,6 +36,9 @@ withDB path = bracket (open path) close
 -- | initialize the tables
 initDB :: Connection -> IO ()
 initDB conn = do
+  execute_ conn "PRAGMA journal_mode = WAL"
+  execute_ conn "PRAGMA busy_timeout = 5000"
+
   execute_ conn
     "CREATE TABLE IF NOT EXISTS category (\
     \  id   INTEGER PRIMARY KEY, \

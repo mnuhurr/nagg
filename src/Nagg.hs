@@ -8,8 +8,6 @@ module Nagg
   , dumpResp
   ) where
 
-import Database.SQLite.Simple
-
 import Nagg.Config
 import Nagg.DB
 import Nagg.Feed
@@ -44,10 +42,16 @@ dumpResp url = do
 
 
 -- | fetch the items and insert them into the database
-collectSourceItems :: Connection -> SourceConfig -> IO ()
-collectSourceItems conn sc = do
-  cid <- ensureCategory conn (scCategory sc)
+collectSourceItems :: FilePath -> SourceConfig -> IO ()
+collectSourceItems db_path sc = do
   (si, items) <- fetchSource sc
   -- putStrLn $ "got " <> show (length items) <> " items"
-  sid <- ensureSource conn cid sc si
-  insertItems conn sid items
+  
+  withDB db_path $ \conn -> do
+    initDB conn
+    
+    cid <- ensureCategory conn (scCategory sc)
+    sid <- ensureSource conn cid sc si
+
+    insertItems conn sid items
+  pure ()
