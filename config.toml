@@ -1,5 +1,6 @@
 [general]
 db_path = "news.sql"
+port = 8080
 
 # hesari
 [[source]]

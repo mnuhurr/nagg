@@ -4,15 +4,16 @@ module Nagg
   , Config(..)
   , readConfig
   , collectSourceItems
-  , parseFile
-  , dumpResp
+  , runServer
   ) where
 
+import Nagg.API (runServer)
 import Nagg.Config
 import Nagg.DB
 import Nagg.Feed
 
 
+{-
 -- debug
 import qualified Data.ByteString as BS
 import Conduit
@@ -21,7 +22,6 @@ import Text.RSS.Conduit.Parse (rssDocument)
 import Text.RSS.Types
 
 import Network.HTTP.Simple
-
 
 -- | debug
 parseFile :: FilePath -> IO (RssDocument NoExtensions)
@@ -39,7 +39,7 @@ dumpResp url = do
   print $ getResponseStatus resp
   print $ getResponseHeaders resp
   pure ()
-
+-}
 
 -- | fetch the items and insert them into the database
 collectSourceItems :: FilePath -> SourceConfig -> IO ()

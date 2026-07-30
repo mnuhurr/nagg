@@ -1,0 +1,4 @@
+allow-newer: 
+    servant-server:base,
+    servant:base
+packages: .

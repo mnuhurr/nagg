@@ -7,11 +7,13 @@ module Nagg.Config
   ) where
 
 
+import Data.Maybe (fromMaybe)
 import Data.Text (Text)
-import TOML (DecodeTOML, tomlDecoder, getField, decodeFile)
+import TOML (DecodeTOML, tomlDecoder, getField, getFieldOpt, decodeFile)
 
 data GeneralConfig = GeneralConfig
   { gcDbPath :: FilePath
+  , gcPort :: Int
   } deriving (Eq, Show)
 
 data SourceConfig = SourceConfig
@@ -27,7 +29,9 @@ data Config = Config
 
 instance DecodeTOML GeneralConfig where
   tomlDecoder = 
-    GeneralConfig <$> getField "db_path"
+    GeneralConfig 
+      <$> getField "db_path"
+      <*> (fromMaybe 8080 <$> getFieldOpt "port")
 
 instance DecodeTOML SourceConfig where
   tomlDecoder = 
