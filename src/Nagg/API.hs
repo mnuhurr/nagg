@@ -19,12 +19,12 @@ import Servant.Server.StaticFiles (serveDirectoryFileServer)
 
 
 data ItemView = ItemView
-  { itemTitle :: Text
-  , itemLink :: Text
-  , itemDescription :: Maybe Text
-  , itemPubDate :: UTCTime
-  , itemSourceName :: Text
-  , itemCategory :: Text
+  { itemTitle :: !Text
+  , itemLink :: !Text
+  , itemDescription :: !(Maybe Text)
+  , itemPubDate :: !UTCTime
+  , itemSourceName :: !Text
+  , itemCategory :: !Text
   } deriving (Show, Generic)
 
 instance ToJSON ItemView

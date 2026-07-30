@@ -2,26 +2,26 @@
     font-family: Inter, system-ui, sans-serif;
     font-size: 8pt;
 
-    --col1: #3a2d32ff;
-    --col2: #c44900ff;
-    --col3: #548687ff;
-    --col4: #ddd78dff;
-    --col5: #efd6acff;
+    --bg: #fff;
+    --meta: #777;
+    --desc: #555;
+    --head: #222;
+    --text: #333;
 }
 
 body { 
     max-width: 700px; 
     margin: 0 auto;
     padding: 1rem;
-    background: var(--col1);
-    color: var(--col2);
+    background: var(--bg);
+    color: var(--text);
 }
 
-.item { padding: 0.75rem 0; border-bottom: 1px solid var(--col3); }
-.item h2 { font-size: 1rem; margin: 0 0 0.25rem 0; color: var(--col4); }
+.item { padding: 0.75rem 0; border-bottom: 1px solid var(--text); }
+.item h2 { font-size: 1rem; margin: 0 0 0.25rem 0; color: var(--head); }
 .item h2 a { color: inherit; text-decoration: none; }
 .item h2 a:hover { text-decoration: underline; }
-.meta { font-size: 0.8rem; color: #999; margin-bottom: 0.25rem; }
-.desc { font-size: 0.9rem; color: var(--col3); }
+.meta { font-size: 0.8rem; color: var(--meta); margin-bottom: 0.25rem; }
+.desc { font-size: 0.9rem; color: var(--text); }
 #sentinel { height: 1px; }
-#status { text-align: center; color: var(--col5); padding: 1rem; }
+#status { text-align: center; color: var(--meta); padding: 1rem; }

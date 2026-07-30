@@ -12,18 +12,18 @@ import Data.Text (Text)
 import TOML (DecodeTOML, tomlDecoder, getField, getFieldOpt, decodeFile)
 
 data GeneralConfig = GeneralConfig
-  { gcDbPath :: FilePath
-  , gcPort :: Int
+  { gcDbPath :: !FilePath
+  , gcPort :: !Int
   } deriving (Eq, Show)
 
 data SourceConfig = SourceConfig
-  { scUrl :: Text
-  , scCategory :: Text
+  { scUrl :: !Text
+  , scCategory :: !Text
   } deriving (Eq, Show)
 
 data Config = Config
-  { cfgGeneral :: GeneralConfig
-  , cfgSources :: [SourceConfig]
+  { cfgGeneral :: !GeneralConfig
+  , cfgSources :: ![SourceConfig]
   } deriving (Eq, Show)
 
 

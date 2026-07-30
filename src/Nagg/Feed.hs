@@ -26,16 +26,16 @@ import URI.ByteString (serializeURIRef')
 import Nagg.Config
 
 data SourceInfo = SourceInfo 
-  { siTitle :: Text
-  , siDescription :: Text
+  { siTitle :: !Text
+  , siDescription :: !Text
   } deriving (Eq, Show)
 
 data NewsItem = NewsItem
-  { niGuid :: Text
-  , niTitle :: Text
-  , niLink :: Text
-  , niDescription :: Text
-  , niPubDate :: UTCTime
+  { niGuid :: !Text
+  , niTitle :: !Text
+  , niLink :: !Text
+  , niDescription :: !Text
+  , niPubDate :: !UTCTime
   } deriving (Eq, Show)
 
 
