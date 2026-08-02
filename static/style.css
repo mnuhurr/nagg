@@ -25,3 +25,7 @@ body {
 .desc { font-size: 0.9rem; color: var(--text); }
 #sentinel { height: 1px; }
 #status { text-align: center; color: var(--meta); padding: 1rem; }
+
+#categories { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+.cat-btn { border: 1px solid #ccc; background: none; border-radius: 999px; padding: 0.25rem 0.75rem; font-size: 0.85rem; cursor: pointer; }
+.cat-btn.active { background: #333; color: #fff; border-color: #333; }

@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>News</h1>
+<div id="categories"></div>
 <div id="list"></div>
 <div id="sentinel"></div>
 <div id="status"></div>
@@ -17,6 +18,7 @@ const LIMIT = 30;
 let loading = false;
 let done = false;
 let lastPublishedAt = null;
+let currentCategory = null;
 
 const listEl = document.getElementById('list');
 const statusEl = document.getElementById('status');
@@ -45,6 +47,44 @@ function colorForCategory(name) {
       let hash = 0;
       for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
       return CATEGORY_COLORS[Math.abs(hash) % CATEGORY_COLORS.length];
+}
+
+async function loadCategories() {
+    const res = await fetch('/api/categories');
+    const categories = await res.json();
+
+    const container = document.getElementById('categories');
+    const allBtn = makeCategoryButton('kaikki', null);
+    container.appendChild(allBtn);
+    categories.forEach(cat => container.appendChild(makeCategoryButton(cat, cat)));
+    updateActiveButton();
+}
+
+function makeCategoryButton(label, value) {
+    const btn = document.createElement('button');
+    btn.textContent = label;
+    btn.dataset.category = value ?? '';
+    btn.className = 'cat-btn';
+    btn.onclick = () => selectCategory(value);
+    return btn;
+}
+
+function updateActiveButton() {
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        const isActive = (btn.dataset.category || null) === currentCategory;
+        btn.classList.toggle('active', isActive);
+    });
+}
+
+function selectCategory(cat) {
+    if (cat === currentCategory) return;
+    currentCategory = cat;
+    lastPublishedAt = null;
+    done = false;
+    listEl.innerHTML = '';
+    statusEl.textContent = '';
+    updateActiveButton();
+    loadMore();
 }
 
 function renderItem(item) {
@@ -91,6 +131,7 @@ async function loadMore() {
 
   const params = new URLSearchParams({ limit: LIMIT });
   if (lastPublishedAt) params.set('before', lastPublishedAt);
+  if (currentCategory) params.set('category', currentCategory);
 
   try {
     const res = await fetch(`/api/items?${params}`);
@@ -124,6 +165,7 @@ const observer = new IntersectionObserver(entries => {
 });
 observer.observe(sentinel);
 
+loadCategories();
 loadMore();
 </script>
 </body>
